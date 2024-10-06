@@ -5,7 +5,10 @@ Pour réussir ce défi tu dois coder le jeu du plus ou moins, demande à l'utili
 C
 
 ## 🏃 Build & Run
-`gcc -o out main.c`
+```
+gcc -o plusoumoins main.c
+./plusoumoins
+```
 
 ## ✏️ Note
 c cool le c

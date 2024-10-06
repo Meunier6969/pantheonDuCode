@@ -1,3 +1,5 @@
+// TODO: Error checking
+
 #include <stdio.h>
 #include <time.h>	// Random number
 #include <stdlib.h>
@@ -10,7 +12,8 @@ int getRandomNumber(int lb, int hb)
 
 int main() 
 {
-	srand(time(NULL)); // Initialization
+	// Initialization
+	srand(time(NULL)); 
 
 	int choice;
 
@@ -23,7 +26,8 @@ int main()
 	
 	BEGINNING:
 
-	printf("Bienvenue de ce jeu de Plus ou Moins !");
+	// hi :D
+	printf("Bienvenue de ce jeu de Plus ou Moins !\n");
 
 	printf("Enter la borne minimale : ");
 	scanf("%d", &lowerBound);
@@ -33,6 +37,7 @@ int main()
 	try = 0;
 	randomNumber = getRandomNumber(lowerBound, higherBound);
 
+	// main loop
 	do
 	{
 		try++;
@@ -52,6 +57,7 @@ int main()
 	else
 		printf("Tu as trouvé.e le nombre en %d essais!\n", try);
 
+	// restart
 	printf("Veux tu rejouer ? (y/N) ");
 	scanf(" %c", &choice);
 	if (choice == 'y')

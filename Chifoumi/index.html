@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./style.css">
+	<script src="./game.js"></script>
+	<title>Chifoumi</title>
+	<!--------------------------------------------------->
+	<!-- https://music.youtube.com/watch?v=ONELMxaKImU -->
+	<!--------------------------------------------------->
+</head>
+<body>
+	<h1>Chifoumi</h1>
+
+	<table>
+		<tr>
+			<th>Victoires</th>
+			<th>Defaites</th>
+			<th>Egalités</th>
+			<th>Total</th>
+			<th>Winrate</th>
+		</tr>
+		<tr>
+			<th id="nbvictory">0</th>
+			<th id="nbdefeat">0</th>
+			<th id="nbtie">0</th>
+			<th id="totalgames">0</th>
+			<th id="winrate">0</th>
+		</tr>
+	</table>
+
+	<br>
+
+	<div>
+		<span>Reinitialiser le compteur : </span>
+		<button type="button" onclick="window.location.reload()">Reset</button>
+	</div>
+
+	<br>
+
+	<div id="playbuttons">
+		<span>Choisi ton coup : </span>
+		<button type="button" onclick="playMove('p')">Pierre</button>
+		<button type="button" onclick="playMove('f')">Feuille</button>
+		<button type="button" onclick="playMove('c')">Ciseaux</button>
+	</div>
+	
+	<br>
+
+	<div id="results">
+		<div>Tu as choisi <span id="userPlay">-</span></div>
+		<div>L'ordinateur a choisi <span id="cpuPlay">-</span></div>
+		<div><span id="winner">-</span></div>
+	</div>
+</body>
+</html>

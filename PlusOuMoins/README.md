@@ -4,7 +4,7 @@ Pour réussir ce défi tu dois coder le jeu du plus ou moins, demande à l'utili
 ## 💾 Language(s) utilisé(s)
 Python
 
-## 🏃 Build & Run
+## 🏃 Run
 ```
 python3 main.py
 ```
@@ -12,3 +12,4 @@ python3 main.py
 ## ✏️ Note
 c cool le ~~c~~ ~~go~~ python
 flm de faire rendu le rendu graphique donc maybe plus tard ig 
+error checking aussi ?

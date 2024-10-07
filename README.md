@@ -1,5 +1,6 @@
 # Pantheon Du Code
-Répo de mes soumissions pour l'[évenement One Pantheon](https://poc.onepantheon.fr/)
+Répo de mes soumissions pour l'[évenement One Pantheon](https://poc.onepantheon.fr/) \
+Je code uniquement pour m'amuser/m'entrainer, pas besoin de récompense (de toute façon Anatole est trop fort)
 
 ## 👟 Défis
 ### 📗 Vert (1/3)

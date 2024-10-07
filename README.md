@@ -3,10 +3,10 @@ Répo de mes soumissions pour l'[évenement One Pantheon](https://poc.onepantheo
 Je code uniquement pour m'amuser/m'entrainer, pas besoin de récompense (de toute façon Anatole est trop fort)
 
 ## 👟 Défis
-### 📗 Vert (1/3)
+### 📗 Vert (3/3)
 - ~~Hello World~~
-- Chifoumi
-- Plus ou Moins
+- ~~Chifoumi~~
+- ~~Plus ou Moins~~
 ### 📙 Orange (0/7)
 - ChatBot
 - HangMan

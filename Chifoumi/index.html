@@ -13,6 +13,12 @@
 <body>
 	<h1>Chifoumi</h1>
 
+	<div id="background">
+		
+
+
+	</div>
+
 	<table>
 		<tr>
 			<th>Victoires</th>
@@ -40,10 +46,9 @@
 	<br>
 
 	<div id="playbuttons">
-		<span>Choisi ton coup : </span>
-		<button type="button" onclick="playMove('p')">Pierre</button>
-		<button type="button" onclick="playMove('f')">Feuille</button>
-		<button type="button" onclick="playMove('c')">Ciseaux</button>
+		<span onclick="playMove('p')">🦈</span>
+		<span onclick="playMove('f')">🪼</span>
+		<span onclick="playMove('c')">🦐</span>
 	</div>
 	
 	<br>
@@ -53,5 +58,7 @@
 		<div>L'ordinateur a choisi <span id="cpuPlay">-</span></div>
 		<div><span id="winner">-</span></div>
 	</div>
+
+	<!-- new -->
 </body>
 </html>

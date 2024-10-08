@@ -1,7 +1,7 @@
 const fullnames = {
-	'p': "Pierre",
-	'f': "Feuille",
-	'c': "Ciseaux",
+	'p': "Requin",
+	'f': "Méduse",
+	'c': "Crevette",
 }
 
 let userWinCount = 0

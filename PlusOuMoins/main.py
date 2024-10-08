@@ -4,6 +4,14 @@
 
 from random import randint
 
+def loopIntInput(s: str) -> int:
+	while True:
+		try:
+			result = int(input(s))
+			return result
+		except ValueError:
+			pass
+
 def chooseBounds() -> tuple:
 	choice = 0
 
@@ -14,7 +22,7 @@ def chooseBounds() -> tuple:
 	print("4 Au choix")
 
 	while choice not in [1, 2, 3, 4]:
-		choice = int(input("> "))
+		choice = loopIntInput("> ")
 
 	match choice:
 		case 1:
@@ -24,8 +32,11 @@ def chooseBounds() -> tuple:
 		case 3:
 			return (0, 10000)
 		case 4:
-			lb = int(input("Entrer la borne minimale > "))
-			hb = int(input("Entrer la borne maximale > "))
+			lb = loopIntInput("Entrer la borne minimale > ")
+			hb = lb - 1 # Ensure 1 loop iteration 
+			while hb < lb:
+				hb = loopIntInput("Entrer la borne maximale > ")
+
 			return (lb, hb)
 
 	return (0, 100)
@@ -40,8 +51,8 @@ def game(lb: int, hb: int) -> int:
 	while guess != randomNumber:
 		attempt += 1
 
-		guess = int(input(f"Essai #{attempt} > "))
-
+		guess = loopIntInput(f"Essai #{attempt} > ")
+		print(f"gsetze tzezte vztevtze{guess}{randomNumber}")
 		if guess > randomNumber:
 			print("Le nombre est plus petit")
 		elif guess < randomNumber:

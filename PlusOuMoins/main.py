@@ -52,7 +52,6 @@ def game(lb: int, hb: int) -> int:
 		attempt += 1
 
 		guess = loopIntInput(f"Essai #{attempt} > ")
-		print(f"gsetze tzezte vztevtze{guess}{randomNumber}")
 		if guess > randomNumber:
 			print("Le nombre est plus petit")
 		elif guess < randomNumber:

@@ -10,7 +10,10 @@ Ouvrez `index.html` dans n'importe quel navigateur.
 ## ✏️ Note
 web un point zero meilleur web
 🦈>🦐>🪼>🦈
-
+le requin mange les crevette
+la crevette-pistolet tire les méduses
+la méduse empoisone les requins
+👍
 
 
 

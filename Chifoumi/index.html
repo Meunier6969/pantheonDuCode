@@ -3,6 +3,9 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="./style.css">
 	<script src="./game.js"></script>
 	<title>Chifoumi</title>
@@ -11,37 +14,65 @@
 	<!--------------------------------------------------->
 </head>
 <body>
-	<h1>Chifoumi</h1>
-
 	<div id="background">
+		<div class="sun"></div>
+		<div class="sun"></div>
 		
+		<div id="bateau">
+			<div id="bateau-mat"></div>
+			<div id="bateau-hull"></div>
+			<div id="bateau-flag">
+				<div id="bateau-flag-line"></div>
+				<div id="bateau-flag-line"></div>
+				<div id="bateau-flag-line"></div>
+				<div id="bateau-flag-line"></div>
+				<div id="bateau-flag-line"></div>
+			</div>
+		</div>
+
+		<div id="ocean"></div>		
 
 
 	</div>
 
-	<table>
-		<tr>
-			<th>Victoires</th>
-			<th>Defaites</th>
-			<th>Egalités</th>
-			<th>Total</th>
-			<th>Winrate</th>
-		</tr>
-		<tr>
-			<th id="nbvictory">0</th>
-			<th id="nbdefeat">0</th>
-			<th id="nbtie">0</th>
-			<th id="totalgames">0</th>
-			<th id="winrate">0</th>
-		</tr>
-	</table>
+	<div id="elements">
+		<div id="elements-in-sky">
+			<h1 id="title">🦀 Chifoumi 🏖️</h1>
 
+			<div id="stats">
+				<div>V-D-E : <span id="nbvictory">0</span>-<span id="nbdefeat">0</span>-<span id="nbtie">0</span></div>
+				<div>Winrate : <span id="winrate">0</span></div>
+			</div>
+
+			<div>
+				<span>Reinitialiser le compteur : </span>
+				<button type="button" onclick="window.location.reload()">Reset</button>
+			</div>
+
+		</div>
+		
+		<div id="elements-in-ocean">
+			<div id="playbuttons">
+				<span onclick="playMove('r')">🦈</span>
+				<span onclick="playMove('m')">🪼</span>
+				<span onclick="playMove('c')">🦐</span>
+			</div>
+
+			<div id="results">
+				<div>Tu as choisi <span id="userPlay">-</span></div>
+				<div>La mer a choisi <span id="cpuPlay">-</span></div>
+				<div><span id="reason">-</span></div>
+				<div><span id="winner">-</span></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 
+	
+	
 	<br>
 
-	<div>
-		<span>Reinitialiser le compteur : </span>
-		<button type="button" onclick="window.location.reload()">Reset</button>
-	</div>
+	
 
 	<br>
 
@@ -53,12 +84,7 @@
 	
 	<br>
 
-	<div id="results">
-		<div>Tu as choisi <span id="userPlay">-</span></div>
-		<div>L'ordinateur a choisi <span id="cpuPlay">-</span></div>
-		<div><span id="winner">-</span></div>
-	</div>
+	 -->
 
-	<!-- new -->
 </body>
 </html>

@@ -1,6 +1,6 @@
 const fullnames = {
-	'p': "Requin",
-	'f': "Méduse",
+	'r': "Requin",
+	'm': "Méduse",
 	'c': "Crevette",
 }
 
@@ -11,21 +11,21 @@ let totalGames = 0
 
 function playMove(playerMove) {
 
-	let cpuMove = "pfc"[Math.floor(Math.random() * 3)] // oui
+	let cpuMove = "rmc"[Math.floor(Math.random() * 3)] // oui
 	let winner
 
 	switch (playerMove) {
 		case cpuMove:
 			winner = "noone"
 			break
-		case 'p':
-			winner = (cpuMove === 'f') ? "cpu" : "user";
+		case 'r':
+			winner = (cpuMove === 'm') ? "cpu" : "user";
 			break
-		case 'f':
+		case 'm':
 			winner = (cpuMove === 'c') ? "cpu" : "user";
 			break
 		case 'c':
-			winner = (cpuMove === 'p') ? "cpu" : "user";
+			winner = (cpuMove === 'r') ? "cpu" : "user";
 			break
 	}
 
@@ -39,7 +39,7 @@ function playMove(playerMove) {
 			userWinCount++
 			break;
 		case "cpu":
-			document.getElementById("winner").textContent = "L'ordinateur à gagné..."
+			document.getElementById("winner").textContent = "La mer à gagné..."
 			cpuWinCount++
 			break;
 		default:
@@ -54,7 +54,7 @@ function playMove(playerMove) {
 	document.getElementById("nbvictory").textContent = userWinCount
 	document.getElementById("nbdefeat").textContent = cpuWinCount
 	document.getElementById("nbtie").textContent = tieCount
-	document.getElementById("totalgames").textContent = totalGames
+	
 	document.getElementById("winrate").textContent = ((userWinCount / totalGames) * 100).toFixed(2) + "%"
 
 	document.getElementById("results").style.visibility = 'visible'

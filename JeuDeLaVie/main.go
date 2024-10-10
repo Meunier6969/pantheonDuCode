@@ -1,5 +1,12 @@
 package main
+/*
+TODO
+single step
 
+cursor
+add shapes
+
+*/
 import (
 	"log"
 	// "math"
@@ -26,52 +33,80 @@ func main() {
 	scr.Timeout(50)
 
 	wy, wx := scr.MaxYX()
-	if wy < 18 || wx < 52 { // "fuck it we ball numbers"
-		log.Fatal("Terminal is not big enough")
+	// Checking for terminal size
+
+	vertical := 2*wy >= wx
+	var offsety int
+	var offsetx int
+	if vertical {
+		offsety = 9
+		offsetx = 3
+	} else {
+		offsety = 3
+		offsetx = 36
 	}
+
+	var gs GameState
+	gs.RandomInitState()
 
 	gv := GameView{
 		0,
 		0,
-		5,
-		5,
-		25,
-		50,
+		2,
+		3,
+		Min(102, wy - offsety),
+		Min(103, wx - offsetx),
 		nil, // placeholder for 2 lines below
+		200,
+		true,
 	}
 	gv.pad, err = nc.NewPad(GAMEY, GAMEX)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	// Fit to screen
-	
-
-	var ch nc.Key
-	for {
+	for {	
 		// Actual drawing
-		scr.MovePrintf(0, 0, "-- %d, %d -- %v --", gv.vy, gv.vx, ch)
-		scr.MovePrintf(1, 0, "-- %d, %d -- %d, %d -- ", gv.p1y, gv.p1y, gv.p2y, gv.p2y)
-		gv.TestFilling()
 		CustomBorder(scr, gv)
-		// Draw to screen
-		scr.NoutRefresh() // Border and ui
+		if gv.run {
+			gs.ComputeNextStep()
+		}
+		gv.FillWithState(gs)
+
+		if vertical {
+			PrintInformation(scr, gv, wy-6, 3)
+		} else {
+			PrintInformation(scr, gv, 2, gv.p2x + 4)
+		}
+
+		// Refresh screen
+		scr.NoutRefresh()   // Border and ui
 		gv.NoutRefresh(scr) // Game of Life
 
 		nc.Update()
 
-		ch := gv.pad.GetChar()
+		// User Input
+		ch := scr.GetChar()
 		switch ch {
-			case 'q':
-				return
-			case 'h':
-				gv.MoveView(4)
-			case 'j':
-				gv.MoveView(2)
-			case 'k':
-				gv.MoveView(8)
-			case 'l':
-				gv.MoveView(6)
+		// Yeah
+		case 'c':
+			gs.EmptyInitState()
+		case 'r':
+			gs.RandomInitState()
+
+		case 'q':
+			return
+		case 'p':
+			gv.ToggleRun()
+		// Moving
+		case 'h':
+			gv.MoveView(4)
+		case 'j':
+			gv.MoveView(2)
+		case 'k':
+			gv.MoveView(8)
+		case 'l':
+			gv.MoveView(6)
 		}
 	}
 }

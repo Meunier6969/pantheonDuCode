@@ -38,8 +38,13 @@
 }
 
 @keyframes turn {
-	from {transform: translate(-50%, -50%) rotate(360deg);}
-	to {transform: translate(-50%, -50%) rotate(0deg);}
+	from {
+		transform: translate(-50%, -50%) rotate(360deg);
+	}
+
+	to {
+		transform: translate(-50%, -50%) rotate(0deg);
+	}
 }
 
 #bateau {
@@ -58,8 +63,13 @@
 }
 
 @keyframes bobing {
-	from {transform: rotateZ(-2deg);}
-	to {transform: rotateZ(2deg);}
+	from {
+		transform: rotateZ(-2deg);
+	}
+
+	to {
+		transform: rotateZ(2deg);
+	}
 }
 
 #bateau-hull {
@@ -100,15 +110,19 @@
 #bateau-flag-line:nth-child(1) {
 	background-color: #5BCFFA;
 }
+
 #bateau-flag-line:nth-child(2) {
 	background-color: #F5ABB9;
 }
+
 #bateau-flag-line:nth-child(3) {
 	background-color: #FFFFFF;
 }
+
 #bateau-flag-line:nth-child(4) {
 	background-color: #F5ABB9;
 }
+
 #bateau-flag-line:nth-child(5) {
 	background-color: #5BCFFA;
 }
@@ -184,12 +198,12 @@
 	text-align: center;
 }
 
-#playbuttons > span {
+#playbuttons>span {
 	font-size: 10rem;
 	margin: 0 5rem;
 }
 
-#elements > * {
+#elements>* {
 	text-align: center;
 }
 
@@ -203,4 +217,3 @@
 	padding-top: 5%;
 	visibility: hidden;
 }
-

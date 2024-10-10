@@ -5,7 +5,7 @@ import (
 	nc "github.com/rthornton128/goncurses"
 )
 
-// func (scr *nc.Window) CustomBorder(gv GameView) {
+// func (scr *nc.Window) CustomBorder(gv GameView) { // what couldve been...... 😔
 func CustomBorder(scr *nc.Window, gv GameView) {
 	var indicator rune
 
@@ -33,4 +33,33 @@ func CustomBorder(scr *nc.Window, gv GameView) {
 	for i := gv.p1y; i <= gv.p2y; i++ {
 		scr.MoveAddChar(i, gv.p2x+1, nc.Char(indicator))
 	}
+}
+
+func PrintInformation(scr *nc.Window, gv GameView, y int, x int) {
+	var run string
+	if gv.run {
+		run = "running"
+	} else {
+		run = "paused"
+	}
+	scr.MovePrintf(y,   x, "[c] clear screen")
+	scr.MovePrintf(y+1, x, "[r] random state")
+	scr.MovePrintf(y+2, x, "[p] %s  ", run)
+	scr.MovePrintf(y+3, x, "[s] %d  ", gv.spd)
+	scr.MovePrintf(y+4, x, "[hjkl] move around the screen")
+
+	scr.MovePrintf(y+6, x, "[q] quit")
+	/*
+[c] clear screen
+[r] random state
+
+[p] running
+[s] speed
+[hjkl] move around the screen
+
+[p] paused
+[s] single step
+[hjkl] move around the screen/cursor
+[?] toggle cursor
+	*/
 }

@@ -53,6 +53,7 @@ func main() {
 	// Game speed
 	scr.Timeout(gv.spd)
 
+	// Main loop
 	for {
 		// Actual drawing
 		CustomBorder(scr, gv)
@@ -98,12 +99,17 @@ func main() {
 		case 'p':
 			gv.ToggleRun()
 
-			// When pause
+		// When paused
 		case 't':
 			gv.ToggleCursor()
-		case ' ':
-			gs.ToggleCellAtCursor(gv)
 
+		case ' ':
+			gs.AddPatternAtCursor(gv)
+		case 'a':
+			gv.CyclePattern(false)
+		case 'z':
+			gv.CyclePattern(true)
+			
 		// Moving
 		case 'h':
 			if gv.run || !gv.cur {

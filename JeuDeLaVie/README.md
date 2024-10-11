@@ -50,7 +50,8 @@ Ce jeu utilise les mouvement Vim pour se deplacer: \
 
 ### Quand le curseur est activé
 `hjkl` : bouger le curseur \
-`SPACE` : allumer/éteindre la cellule séléctionée	
+`az` : selectionner un pattern
+`SPACE` : ajouter le pattern 
 </details>
 
 ## ✏️ Note

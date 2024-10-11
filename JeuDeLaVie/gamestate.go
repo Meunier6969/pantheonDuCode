@@ -24,8 +24,182 @@ func (gs *GameState) EmptyInitState() {
 	}
 }
 
+func (gs *GameState) PutCellLoop(y int, x int) {
+	ny := (y + GAMEY) % GAMEY
+	nx := (x + GAMEX) % GAMEX
+
+	gs.cell[ny][nx] = 1;
+}
+
 func (gs *GameState) ToggleCellAtCursor(gv GameView) {
 	gs.cell[gv.cy][gv.cx] = (gs.cell[gv.cy][gv.cx] + 1) % 2 
+}
+
+func (gs *GameState) AddPatternAtCursor(gv GameView) {
+	// oskour
+	switch(gv.pat) {
+	// Single cell 
+	case 0:
+		gs.ToggleCellAtCursor(gv)
+	// Still lifes
+	case 1: // Block
+		gs.PutCellLoop(gv.cy+0, gv.cx+0)
+		gs.PutCellLoop(gv.cy+0, gv.cx+1)
+		gs.PutCellLoop(gv.cy+1, gv.cx+0)
+		gs.PutCellLoop(gv.cy+1, gv.cx+1)
+	case 2: // Beehive
+		gs.PutCellLoop(gv.cy+0, gv.cx+1)
+		gs.PutCellLoop(gv.cy+0, gv.cx+2)
+		gs.PutCellLoop(gv.cy+1, gv.cx+0)
+		gs.PutCellLoop(gv.cy+1, gv.cx+3)
+		gs.PutCellLoop(gv.cy+2, gv.cx+1)
+		gs.PutCellLoop(gv.cy+2, gv.cx+2)
+	case 3: // Loaf
+		gs.PutCellLoop(gv.cy+0, gv.cx+1)
+		gs.PutCellLoop(gv.cy+0, gv.cx+2)
+		gs.PutCellLoop(gv.cy+1, gv.cx+0)
+		gs.PutCellLoop(gv.cy+1, gv.cx+3)
+		gs.PutCellLoop(gv.cy+2, gv.cx+1)
+		gs.PutCellLoop(gv.cy+2, gv.cx+3)
+		gs.PutCellLoop(gv.cy+3, gv.cx+2)
+	case 4: // Boat
+		gs.PutCellLoop(gv.cy+0, gv.cx+0)
+		gs.PutCellLoop(gv.cy+0, gv.cx+1)
+		gs.PutCellLoop(gv.cy+1, gv.cx+0)
+		gs.PutCellLoop(gv.cy+1, gv.cx+2)
+		gs.PutCellLoop(gv.cy+2, gv.cx+1)
+	case 5: // Tub
+		gs.PutCellLoop(gv.cy+0, gv.cx+1)
+		gs.PutCellLoop(gv.cy+1, gv.cx+0)
+		gs.PutCellLoop(gv.cy+1, gv.cx+2)
+		gs.PutCellLoop(gv.cy+2, gv.cx+1)
+	// Oscillators
+	case 6: // Blinker
+		gs.PutCellLoop(gv.cy+0, gv.cx+0)
+		gs.PutCellLoop(gv.cy+0, gv.cx+1)
+		gs.PutCellLoop(gv.cy+0, gv.cx+2)
+	case 7: // Toad
+		gs.PutCellLoop(gv.cy+0, gv.cx+1)
+		gs.PutCellLoop(gv.cy+0, gv.cx+2)
+		gs.PutCellLoop(gv.cy+0, gv.cx+3)
+		gs.PutCellLoop(gv.cy+1, gv.cx+0)
+		gs.PutCellLoop(gv.cy+1, gv.cx+1)
+		gs.PutCellLoop(gv.cy+1, gv.cx+2)
+	case 8: // Beacon
+		gs.PutCellLoop(gv.cy+0, gv.cx+0)
+		gs.PutCellLoop(gv.cy+0, gv.cx+1)
+		gs.PutCellLoop(gv.cy+1, gv.cx+0)
+		gs.PutCellLoop(gv.cy+1, gv.cx+1)
+		gs.PutCellLoop(gv.cy+2, gv.cx+2)
+		gs.PutCellLoop(gv.cy+2, gv.cx+3)
+		gs.PutCellLoop(gv.cy+3, gv.cx+2)
+		gs.PutCellLoop(gv.cy+3, gv.cx+3)
+	case 9: // Pulsat
+		gs.PutCellLoop(gv.cy+0, gv.cx+2)
+		gs.PutCellLoop(gv.cy+0, gv.cx+3)
+		gs.PutCellLoop(gv.cy+0, gv.cx+4)
+		gs.PutCellLoop(gv.cy+0, gv.cx+8)
+		gs.PutCellLoop(gv.cy+0, gv.cx+9)
+		gs.PutCellLoop(gv.cy+0, gv.cx+10)
+		gs.PutCellLoop(gv.cy+2, gv.cx+0)
+		gs.PutCellLoop(gv.cy+2, gv.cx+5)
+		gs.PutCellLoop(gv.cy+2, gv.cx+7)
+		gs.PutCellLoop(gv.cy+2, gv.cx+12)
+		gs.PutCellLoop(gv.cy+3, gv.cx+0)
+		gs.PutCellLoop(gv.cy+3, gv.cx+5)
+		gs.PutCellLoop(gv.cy+3, gv.cx+7)
+		gs.PutCellLoop(gv.cy+3, gv.cx+12)
+		gs.PutCellLoop(gv.cy+4, gv.cx+0)
+		gs.PutCellLoop(gv.cy+4, gv.cx+5)
+		gs.PutCellLoop(gv.cy+4, gv.cx+7)
+		gs.PutCellLoop(gv.cy+4, gv.cx+12)
+		gs.PutCellLoop(gv.cy+5, gv.cx+2)
+		gs.PutCellLoop(gv.cy+5, gv.cx+3)
+		gs.PutCellLoop(gv.cy+5, gv.cx+4)
+		gs.PutCellLoop(gv.cy+5, gv.cx+8)
+		gs.PutCellLoop(gv.cy+5, gv.cx+9)
+		gs.PutCellLoop(gv.cy+5, gv.cx+10)
+		gs.PutCellLoop(gv.cy+7, gv.cx+2)
+		gs.PutCellLoop(gv.cy+7, gv.cx+3)
+		gs.PutCellLoop(gv.cy+7, gv.cx+4)
+		gs.PutCellLoop(gv.cy+7, gv.cx+8)
+		gs.PutCellLoop(gv.cy+7, gv.cx+9)
+		gs.PutCellLoop(gv.cy+7, gv.cx+10)
+		gs.PutCellLoop(gv.cy+8, gv.cx+0)
+		gs.PutCellLoop(gv.cy+8, gv.cx+5)
+		gs.PutCellLoop(gv.cy+8, gv.cx+7)
+		gs.PutCellLoop(gv.cy+8, gv.cx+12)
+		gs.PutCellLoop(gv.cy+9, gv.cx+0)
+		gs.PutCellLoop(gv.cy+9, gv.cx+5)
+		gs.PutCellLoop(gv.cy+9, gv.cx+7)
+		gs.PutCellLoop(gv.cy+9, gv.cx+12)
+		gs.PutCellLoop(gv.cy+10, gv.cx+0)
+		gs.PutCellLoop(gv.cy+10, gv.cx+5)
+		gs.PutCellLoop(gv.cy+10, gv.cx+7)
+		gs.PutCellLoop(gv.cy+10, gv.cx+12)
+		gs.PutCellLoop(gv.cy+12, gv.cx+2)
+		gs.PutCellLoop(gv.cy+12, gv.cx+3)
+		gs.PutCellLoop(gv.cy+12, gv.cx+4)
+		gs.PutCellLoop(gv.cy+12, gv.cx+8)
+		gs.PutCellLoop(gv.cy+12, gv.cx+9)
+		gs.PutCellLoop(gv.cy+12, gv.cx+10)
+	case 10: // Pentadecathlon
+		gs.PutCellLoop(gv.cy+0, gv.cx+1)
+		gs.PutCellLoop(gv.cy+1, gv.cx+1)
+		gs.PutCellLoop(gv.cy+2, gv.cx+0)
+		gs.PutCellLoop(gv.cy+2, gv.cx+2)
+		gs.PutCellLoop(gv.cy+3, gv.cx+1)
+		gs.PutCellLoop(gv.cy+4, gv.cx+1)
+		gs.PutCellLoop(gv.cy+5, gv.cx+1)
+		gs.PutCellLoop(gv.cy+6, gv.cx+1)
+		gs.PutCellLoop(gv.cy+7, gv.cx+0)
+		gs.PutCellLoop(gv.cy+7, gv.cx+2)
+		gs.PutCellLoop(gv.cy+8, gv.cx+1)
+		gs.PutCellLoop(gv.cy+9, gv.cx+1)
+	// Spaceships
+	case 11: // Glider
+		gs.PutCellLoop(gv.cy+0, gv.cx+1)
+		gs.PutCellLoop(gv.cy+1, gv.cx+2)
+		gs.PutCellLoop(gv.cy+2, gv.cx+0)
+		gs.PutCellLoop(gv.cy+2, gv.cx+1)
+		gs.PutCellLoop(gv.cy+2, gv.cx+2)
+	case 12: // LWSS
+		gs.PutCellLoop(gv.cy+0, gv.cx+1)
+		gs.PutCellLoop(gv.cy+0, gv.cx+2)
+		gs.PutCellLoop(gv.cy+0, gv.cx+3)
+		gs.PutCellLoop(gv.cy+0, gv.cx+4)
+		gs.PutCellLoop(gv.cy+1, gv.cx+0)
+		gs.PutCellLoop(gv.cy+1, gv.cx+4)
+		gs.PutCellLoop(gv.cy+2, gv.cx+4)
+		gs.PutCellLoop(gv.cy+3, gv.cx+0)
+		gs.PutCellLoop(gv.cy+3, gv.cx+3)
+	case 13: // MWSS
+		gs.PutCellLoop(gv.cy+0, gv.cx+1)
+		gs.PutCellLoop(gv.cy+0, gv.cx+2)
+		gs.PutCellLoop(gv.cy+0, gv.cx+3)
+		gs.PutCellLoop(gv.cy+0, gv.cx+4)
+		gs.PutCellLoop(gv.cy+0, gv.cx+5)
+		gs.PutCellLoop(gv.cy+1, gv.cx+0)
+		gs.PutCellLoop(gv.cy+1, gv.cx+5)
+		gs.PutCellLoop(gv.cy+2, gv.cx+5)
+		gs.PutCellLoop(gv.cy+3, gv.cx+0)
+		gs.PutCellLoop(gv.cy+3, gv.cx+4)
+		gs.PutCellLoop(gv.cy+4, gv.cx+2)
+	case 14: // HWSS
+		gs.PutCellLoop(gv.cy+0, gv.cx+1)
+		gs.PutCellLoop(gv.cy+0, gv.cx+2)
+		gs.PutCellLoop(gv.cy+0, gv.cx+3)
+		gs.PutCellLoop(gv.cy+0, gv.cx+4)
+		gs.PutCellLoop(gv.cy+0, gv.cx+5)
+		gs.PutCellLoop(gv.cy+0, gv.cx+6)
+		gs.PutCellLoop(gv.cy+1, gv.cx+0)
+		gs.PutCellLoop(gv.cy+1, gv.cx+6)
+		gs.PutCellLoop(gv.cy+2, gv.cx+6)
+		gs.PutCellLoop(gv.cy+3, gv.cx+0)
+		gs.PutCellLoop(gv.cy+3, gv.cx+5)
+		gs.PutCellLoop(gv.cy+4, gv.cx+2)
+		gs.PutCellLoop(gv.cy+4, gv.cx+3)
+	}
 }
 
 func (gs *GameState) ComputeNextStep() {

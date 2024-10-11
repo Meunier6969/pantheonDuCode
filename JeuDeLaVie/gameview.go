@@ -23,6 +23,7 @@ type GameView struct {
 	spd int
 	run bool
 	cur	bool
+	pat int
 }
 
 func NewGameView(p1y int, p1x int, p2y int, p2x int) GameView {
@@ -42,6 +43,7 @@ func NewGameView(p1y int, p1x int, p2y int, p2x int) GameView {
 	gv.spd = 50
 	gv.run = true
 	gv.cur = false
+	gv.pat = 0
 
 	// Pad thai j'ai faim
 	var err error
@@ -119,6 +121,14 @@ func (gv *GameView) ToggleRun() {
 
 func (gv *GameView) ChangeSpeed() {
 	gv.spd = 200
+}
+
+func (gv *GameView) CyclePattern(dir bool) {
+	if dir {
+		gv.pat = (gv.pat+1 + 15) % 15
+	} else {
+		gv.pat = (gv.pat-1 + 15) % 15
+	}
 }
 
 func (gv *GameView) DrawCursor()  {

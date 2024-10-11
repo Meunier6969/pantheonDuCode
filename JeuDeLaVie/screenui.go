@@ -52,6 +52,8 @@ func CustomBorder(scr *nc.Window, gv GameView) {
 
 func DrawInformationSide(scr *nc.Window, gv GameView, y int, x int) {
 
+	pattername := []string{"toggle", "block", "beehive", "loaf", "boat", "tub", "blinker", "toad", "beacon", "pulsar", "pentadecathlon", "glider", "lwss", "mwss", "hwss"}
+
 	var cursortoggled string
 
 	if gv.cur {
@@ -61,7 +63,7 @@ func DrawInformationSide(scr *nc.Window, gv GameView, y int, x int) {
 	}
 
 	// Clear
-	for i := 0; i < 12; i++ {
+	for i := 0; i < 14; i++ {
 		scr.MovePrintf(y+i, x, "                                       ")
 	}
 
@@ -84,7 +86,8 @@ func DrawInformationSide(scr *nc.Window, gv GameView, y int, x int) {
 		scr.MovePrintf(y+9, x, "[t] toggle cursor (%s) ", cursortoggled)
 		if gv.cur {
 			scr.MovePrintf(y+10, x, "[hjkl] move around the cursor")
-			scr.MovePrintf(y+11, x, "[SPACE] toggle selected cell")
+			scr.MovePrintf(y+11, x, "[SPACE] input patter at selected cell")
+			scr.MovePrintf(y+12, x, "[a] < %s > [z]", pattername[gv.pat])
 			
 		} else {
 			scr.MovePrintf(y+10, x, "[hjkl] move around the screen")
@@ -95,6 +98,10 @@ func DrawInformationSide(scr *nc.Window, gv GameView, y int, x int) {
 }
 
 func DrawInformationBottom(scr *nc.Window, gv GameView, y int, x int) {
+	
+	pattername := []string{"toggle", "block", "beehive", "loaf", "boat", "tub", "blinker", "toad", "beacon", "pulsar", "pentadecathlon", "glider", "lwss", "mwss", "hwss"}
+
+	
 	var cursortoggled string
 
 	if gv.cur {
@@ -104,7 +111,7 @@ func DrawInformationBottom(scr *nc.Window, gv GameView, y int, x int) {
 	}
 
 	// Clear
-	for i := 0; i < 7; i++ {
+	for i := 0; i < 8; i++ {
 		scr.MovePrintf(y+i, x+20, "                                      ")
 	}
 
@@ -128,6 +135,7 @@ func DrawInformationBottom(scr *nc.Window, gv GameView, y int, x int) {
 		if gv.cur {
 			scr.MovePrintf(y+4, x+20, "[hjkl] move around the cursor")
 			scr.MovePrintf(y+5, x+20, "[SPACE] toggle selected cell")
+			scr.MovePrintf(y+6, x+20, "[a] < %s > [z]", pattername[gv.pat])
 			
 		} else {
 			scr.MovePrintf(y+4, x+20, "[hjkl] move around the screen")
@@ -136,17 +144,3 @@ func DrawInformationBottom(scr *nc.Window, gv GameView, y int, x int) {
 	}
 
 }
-
-/*
-[c] clear screen
-[r] random state
-
-[p] running
-[s] speed
-[hjkl] move around the screen
-
-[p] paused
-[s] single step
-[hjkl] move around the screen/cursor
-[?] toggle cursor
-*/

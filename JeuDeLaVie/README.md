@@ -10,11 +10,11 @@ Go
 <details>
 <summary>Détails pour ncurses</summary>
 
-Debian/Ubuntu :
+**Debian/Ubuntu** : \
 `apt install ncurses-dev` \
-Arch :
+**Arch** : \
 `pacman -S ncurses` \
-Windows :
+**Windows** : \
 [Bonne chance](https://github.com/rthornton128/goncurses/wiki)
 	 
 </details>
@@ -25,25 +25,33 @@ go run main.go
 ```
 
 ## 🎮 Utilisation
+Ce jeu utilise les mouvement Vim pour se deplacer: \
+`h` : droite \
+`j` : bas \
+`k` : haut \
+`l` : gauche 
 
-<kdb>q</kdb> : quitter \
-<kdb>r</kdb> : générer un jeu aléatoire \
-<kdb>c</kdb> : reinitialiser le jeu à zéro \
-<kdb>p</kdb> : mettre en pause 
+<details>
+<summary>Contrôles</summary> 
+	
+`q` : quitter \
+`r` : générer un jeu aléatoire \
+`c` : reinitialiser le jeu à zéro \
+`p` : mettre en pause 
 
 ### Quand le jeu est en marche
-<kdb>h</kdb><kdb>j</kdb><kdb>k</kdb><kdb>l</kdb> : bouger la caméra \
-<kdb>s</kdb> : changer la vitesse 
+`hjkl` : bouger la caméra \
+`s` : changer la vitesse 
 
 ### Quand le jeu est en pause
-<kdb>h</kdb><kdb>j</kdb><kdb>k</kdb><kdb>l</kdb> : bouger la caméra \
-<kdb>s</kdb> : avancer d'un tour \
-<kdb>t</kdb> : activer le curseur 
+`hjkl` : bouger la caméra \
+`s` : avancer d'un tour \
+`t` : activer le curseur 
 
 ### Quand le curseur est activé
-<kdb>h</kdb><kdb>j</kdb><kdb>k</kdb><kdb>l</kdb> : bouger le curseur \
-<kdb>SPACE</kdb> : allumer/éteindre la cellule séléctionée
-
+`hjkl` : bouger le curseur \
+`SPACE` : allumer/éteindre la cellule séléctionée	
+</details>
 
 ## ✏️ Note
 j'ai 0 idée de si ça marche sur windows, y a surement moyen d'installer les lib ncurses, mais le plus simple c'est surement juste de tourner ça sur wsl

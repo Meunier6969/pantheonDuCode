@@ -58,3 +58,4 @@ Ce jeu utilise les mouvement Vim pour se deplacer: \
 j'ai 0 idée de si ça marche sur windows, y a surement moyen d'installer les lib ncurses, mais le plus simple c'est surement juste de tourner ça sur wsl
 j'avais deja écrit un jeu de la vie en go donc ça aide quand même
 oui j'utilise le vim motion pour la caméra et le curseur 
+les patterns viennent de [la](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)

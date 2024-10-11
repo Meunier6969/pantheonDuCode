@@ -1,4 +1,5 @@
 package main
+
 /*
 TODO
 single step
@@ -30,16 +31,14 @@ func main() {
 	nc.Echo(false)
 	nc.Raw(true)
 
-	scr.Timeout(50)
-
+	// Checking terminal size
 	wy, wx := scr.MaxYX()
-	// Checking for terminal size
 
 	vertical := 2*wy >= wx
 	var offsety int
 	var offsetx int
 	if vertical {
-		offsety = 9
+		offsety = 10
 		offsetx = 3
 	} else {
 		offsety = 3
@@ -49,23 +48,12 @@ func main() {
 	var gs GameState
 	gs.RandomInitState()
 
-	gv := GameView{
-		0,
-		0,
-		2,
-		3,
-		Min(102, wy - offsety),
-		Min(103, wx - offsetx),
-		nil, // placeholder for 2 lines below
-		200,
-		true,
-	}
-	gv.pad, err = nc.NewPad(GAMEY, GAMEX)
-	if err != nil {
-		log.Fatal(err)
-	}
+	gv := NewGameView(2, 3, Min(102, wy-offsety), Min(103, wx-offsetx))
 
-	for {	
+	// Game speed
+	scr.Timeout(gv.spd)
+
+	for {
 		// Actual drawing
 		CustomBorder(scr, gv)
 		if gv.run {
@@ -73,10 +61,14 @@ func main() {
 		}
 		gv.FillWithState(gs)
 
+		if gv.cur && !gv.run {
+			gv.DrawCursor()
+		}
+
 		if vertical {
-			PrintInformation(scr, gv, wy-6, 3)
+			DrawInformationBottom(scr, gv, wy-7, 3)
 		} else {
-			PrintInformation(scr, gv, 2, gv.p2x + 4)
+			DrawInformationSide(scr, gv, 2, gv.p2x+4)
 		}
 
 		// Refresh screen
@@ -89,24 +81,55 @@ func main() {
 		ch := scr.GetChar()
 		switch ch {
 		// Yeah
+		case 'q':
+			return
+
 		case 'c':
 			gs.EmptyInitState()
 		case 'r':
 			gs.RandomInitState()
 
-		case 'q':
-			return
+		case 's':
+			if gv.run {
+				gv.ChangeSpeed()
+			} else {
+				gs.ComputeNextStep()
+			}
 		case 'p':
 			gv.ToggleRun()
+
+			// When pause
+		case 't':
+			gv.ToggleCursor()
+		case ' ':
+			gs.ToggleCellAtCursor(gv)
+
 		// Moving
 		case 'h':
-			gv.MoveView(4)
+			if gv.run || !gv.cur {
+				gv.MoveView(4)
+			} else {
+				gv.MoveCursor(4)
+			}
 		case 'j':
-			gv.MoveView(2)
+			if gv.run || !gv.cur {
+				gv.MoveView(2)
+			} else {
+				gv.MoveCursor(2)
+			}
 		case 'k':
-			gv.MoveView(8)
+			if gv.run || !gv.cur {
+				gv.MoveView(8)
+			} else {
+				gv.MoveCursor(8)
+			}
 		case 'l':
-			gv.MoveView(6)
+			if gv.run || !gv.cur {
+				gv.MoveView(6)
+			} else {
+				gv.MoveCursor(6)
+			}
+		default:
 		}
 	}
 }

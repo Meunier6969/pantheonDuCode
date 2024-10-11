@@ -4,20 +4,53 @@ import (
 	// "math"
 
 	nc "github.com/rthornton128/goncurses"
-	// "log"
+	"log"
 )
 
 type GameView struct {
-	vy  int // Position of the view
-	vx  int
 	p1y int // Postion of the top-left corner of the pad on screen
 	p1x int
 	p2y int // Postion of the bottom-right corner of the pad on screen
 	p2x int
 	pad *nc.Pad
 
+	vy  int // Position of the view
+	vx  int
+
+	cx 	int
+	cy 	int
+
 	spd int
 	run bool
+	cur	bool
+}
+
+func NewGameView(p1y int, p1x int, p2y int, p2x int) GameView {
+	gv := GameView{}
+
+	// Parameters
+	gv.p1y = p1y
+	gv.p1x = p1x
+	gv.p2y = p2y
+	gv.p2x = p2x
+
+	// Default values
+	gv.vy = 0
+	gv.vx = 0
+	gv.cy = 0
+	gv.cx = 0
+	gv.spd = 50
+	gv.run = true
+	gv.cur = false
+
+	// Pad thai j'ai faim
+	var err error
+	gv.pad, err = nc.NewPad(GAMEY, GAMEX)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return gv
 }
 
 func (gv GameView) TestFilling() {
@@ -59,12 +92,37 @@ func (gv *GameView) MoveView(dir int) {
 	}
 }
 
+func (gv *GameView) MoveCursor(dir int) {
+	switch dir {
+	case 8:
+		gv.cy -= 1
+		gv.cy = Clamp(gv.cy, gv.vy, gv.vy+(gv.p2y-gv.p1y+1))
+	case 6:
+		gv.cx += 1
+		gv.cx = Clamp(gv.cx, gv.vx, gv.vx+(gv.p2x-gv.p1x+1))
+	case 4:
+		gv.cx -= 1
+		gv.cx = Clamp(gv.cx, gv.vx, gv.vx+(gv.p2x-gv.p1x+1))
+	case 2:
+		gv.cy += 1
+		gv.cy = Clamp(gv.cy, gv.vy, gv.vy+(gv.p2y-gv.p1y+1))
+	}
+}
+
+func (gv *GameView) ToggleCursor() {
+	gv.cur = !gv.cur
+}
+
 func (gv *GameView) ToggleRun() {
 	gv.run = !gv.run
 }
 
 func (gv *GameView) ChangeSpeed() {
 	gv.spd = 200
+}
+
+func (gv *GameView) DrawCursor()  {
+	gv.pad.MoveAddChar(gv.cy, gv.cx, gv.pad.MoveInChar(gv.cy, gv.cx) | nc.A_STANDOUT)
 }
 
 func (gv GameView) NoutRefresh(scr *nc.Window) {

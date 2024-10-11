@@ -62,7 +62,7 @@ func DrawInformationSide(scr *nc.Window, gv GameView, y int, x int) {
 
 	// Clear
 	for i := 0; i < 12; i++ {
-		scr.MovePrintf(y+i, x, "                                   ")
+		scr.MovePrintf(y+i, x, "                                       ")
 	}
 
 	scr.MovePrintf(y, x, "[q] quit")
@@ -105,7 +105,7 @@ func DrawInformationBottom(scr *nc.Window, gv GameView, y int, x int) {
 
 	// Clear
 	for i := 0; i < 7; i++ {
-		scr.MovePrintf(y+i, x+20, "                                   ")
+		scr.MovePrintf(y+i, x+20, "                                      ")
 	}
 
 	scr.MovePrintf(y, x, "[q] quit")
@@ -130,7 +130,7 @@ func DrawInformationBottom(scr *nc.Window, gv GameView, y int, x int) {
 			scr.MovePrintf(y+5, x+20, "[SPACE] toggle selected cell")
 			
 		} else {
-			scr.MovePrintf(y+5, x+20, "[hjkl] move around the screen")
+			scr.MovePrintf(y+4, x+20, "[hjkl] move around the screen")
 			scr.MovePrintf(y+5, x+20, "                            ")
 		}
 	}

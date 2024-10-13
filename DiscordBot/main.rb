@@ -8,7 +8,7 @@ bot.mention() do |event|
 	event.message.reply! "I'm alive !", mention_user: true
 end
 
-bot.command(:prison, required_roles: [ENV['BIG_SISTER_ROLE_ID']]) do |event|
+bot.command :prison, required_roles: [ENV['BIG_SISTER_ROLE_ID']]  do |event|
 	event.respond "😭"
 	puts 'Shutting down from Discord'
 	bot.stop

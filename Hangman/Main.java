@@ -1,27 +1,29 @@
 import java.util.Scanner;
 
 public class Main {
-	public static void main(String[] args) {
-		Word w = new Word(1);
 
-		Scanner s = new Scanner(System.in);
+    public static void main(String[] args) {
+        Word w = new Word(1);
 
-		Character c;
+        Scanner s = new Scanner(System.in);
 
-		do {
-			System.out.println(w.wordHidden());
-			System.out.printf("Essais restants : %d\n", w.remainingAttempt);
-			System.out.print("> ");
-			
-			c = s.next().trim().charAt(0);
-			
-			w.tryLetter(c);
-			
-		} while (w.remainingAttempt > 0 && !w.isWordFound());
-		
-		System.out.print("Le mot était : ");
-		System.out.println(w.wordHidden());
-		
-		s.close();
-	}
+        Character c;
+
+        do {
+            System.out.println(w.wordHidden());
+            System.out.printf("Essais restants : %d\n", w.remainingAttempt);
+            System.out.print("Lettres essayées : ");
+            System.out.println(w.triedLetters);
+            System.out.print("> ");
+
+            c = s.next().trim().charAt(0);
+
+            w.tryLetter(c);
+        } while (w.remainingAttempt > 0 && !w.isWordFound());
+
+        System.out.print("Le mot était : ");
+        System.out.println(w.finalWord());
+
+        s.close();
+    }
 }

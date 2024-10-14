@@ -21,7 +21,8 @@ Go
 
 ## 🏃 Run
 ```
-go run main.go
+cd JeuDeLaVie/
+go run *.go
 ```
 
 ## 🎮 Utilisation

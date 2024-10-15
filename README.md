@@ -7,11 +7,11 @@ Je code uniquement pour m'amuser/m'entrainer, pas besoin de récompense (de tout
 - ~~Hello World~~
 - ~~Chifoumi~~
 - ~~Plus ou Moins~~
-### 📙 Orange (0/8)
+### 📙 Orange (1/8)
 - ChatBot
 - HangMan
 - Bot Discord
-- Jeu de la vie
+- ~~Jeu de la vie~~
 - Pong Web
 - Portfolio
 - Jacques de Molay

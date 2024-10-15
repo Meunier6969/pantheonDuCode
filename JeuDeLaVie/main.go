@@ -1,13 +1,5 @@
 package main
 
-/*
-TODO
-single step
-
-cursor
-add shapes
-
-*/
 import (
 	"log"
 	// "math"
@@ -109,7 +101,7 @@ func main() {
 			gv.CyclePattern(false)
 		case 'z':
 			gv.CyclePattern(true)
-			
+
 		// Moving
 		case 'h':
 			if gv.run || !gv.cur {

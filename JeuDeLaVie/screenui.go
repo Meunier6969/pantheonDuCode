@@ -52,7 +52,7 @@ func CustomBorder(scr *nc.Window, gv GameView) {
 
 func DrawInformationSide(scr *nc.Window, gv GameView, y int, x int) {
 
-	pattername := []string{"toggle", "block", "beehive", "loaf", "boat", "tub", "blinker", "toad", "beacon", "pulsar", "pentadecathlon", "glider", "lwss", "mwss", "hwss"}
+	pattername := []string{"toggle", "block", "beehive", "loaf", "boat", "tub", "blinker", "toad", "beacon", "pulsar", "pentadecathlon", "glider", "lwss", "mwss", "hwss", "amongus"}
 
 	var cursortoggled string
 
@@ -88,7 +88,7 @@ func DrawInformationSide(scr *nc.Window, gv GameView, y int, x int) {
 			scr.MovePrintf(y+10, x, "[hjkl] move around the cursor")
 			scr.MovePrintf(y+11, x, "[SPACE] input patter at selected cell")
 			scr.MovePrintf(y+12, x, "[a] < %s > [z]", pattername[gv.pat])
-			
+
 		} else {
 			scr.MovePrintf(y+10, x, "[hjkl] move around the screen")
 			scr.MovePrintf(y+11, x, "                            ")
@@ -98,10 +98,9 @@ func DrawInformationSide(scr *nc.Window, gv GameView, y int, x int) {
 }
 
 func DrawInformationBottom(scr *nc.Window, gv GameView, y int, x int) {
-	
-	pattername := []string{"toggle", "block", "beehive", "loaf", "boat", "tub", "blinker", "toad", "beacon", "pulsar", "pentadecathlon", "glider", "lwss", "mwss", "hwss"}
 
-	
+	pattername := []string{"toggle", "block", "beehive", "loaf", "boat", "tub", "blinker", "toad", "beacon", "pulsar", "pentadecathlon", "glider", "lwss", "mwss", "hwss", "amongus"}
+
 	var cursortoggled string
 
 	if gv.cur {
@@ -136,7 +135,7 @@ func DrawInformationBottom(scr *nc.Window, gv GameView, y int, x int) {
 			scr.MovePrintf(y+4, x+20, "[hjkl] move around the cursor")
 			scr.MovePrintf(y+5, x+20, "[SPACE] toggle selected cell")
 			scr.MovePrintf(y+6, x+20, "[a] < %s > [z]", pattername[gv.pat])
-			
+
 		} else {
 			scr.MovePrintf(y+4, x+20, "[hjkl] move around the screen")
 			scr.MovePrintf(y+5, x+20, "                            ")

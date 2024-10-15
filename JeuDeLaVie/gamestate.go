@@ -28,17 +28,17 @@ func (gs *GameState) PutCellLoop(y int, x int) {
 	ny := (y + GAMEY) % GAMEY
 	nx := (x + GAMEX) % GAMEX
 
-	gs.cell[ny][nx] = 1;
+	gs.cell[ny][nx] = 1
 }
 
 func (gs *GameState) ToggleCellAtCursor(gv GameView) {
-	gs.cell[gv.cy][gv.cx] = (gs.cell[gv.cy][gv.cx] + 1) % 2 
+	gs.cell[gv.cy][gv.cx] = (gs.cell[gv.cy][gv.cx] + 1) % 2
 }
 
 func (gs *GameState) AddPatternAtCursor(gv GameView) {
 	// oskour
-	switch(gv.pat) {
-	// Single cell 
+	switch gv.pat {
+	// Single cell
 	case 0:
 		gs.ToggleCellAtCursor(gv)
 	// Still lifes
@@ -94,7 +94,7 @@ func (gs *GameState) AddPatternAtCursor(gv GameView) {
 		gs.PutCellLoop(gv.cy+2, gv.cx+3)
 		gs.PutCellLoop(gv.cy+3, gv.cx+2)
 		gs.PutCellLoop(gv.cy+3, gv.cx+3)
-	case 9: // Pulsat
+	case 9: // Pulsar
 		gs.PutCellLoop(gv.cy+0, gv.cx+2)
 		gs.PutCellLoop(gv.cy+0, gv.cx+3)
 		gs.PutCellLoop(gv.cy+0, gv.cx+4)
@@ -199,9 +199,48 @@ func (gs *GameState) AddPatternAtCursor(gv GameView) {
 		gs.PutCellLoop(gv.cy+3, gv.cx+5)
 		gs.PutCellLoop(gv.cy+4, gv.cx+2)
 		gs.PutCellLoop(gv.cy+4, gv.cx+3)
+	// Other
+	case 15: // amogus
+		gs.PutCellLoop(gv.cy+0, gv.cx+3)
+		gs.PutCellLoop(gv.cy+0, gv.cx+4)
+		gs.PutCellLoop(gv.cy+0, gv.cx+5)
+		gs.PutCellLoop(gv.cy+0, gv.cx+6)
+		gs.PutCellLoop(gv.cy+0, gv.cx+7)
+		gs.PutCellLoop(gv.cy+1, gv.cx+1)
+		gs.PutCellLoop(gv.cy+1, gv.cx+2)
+		gs.PutCellLoop(gv.cy+1, gv.cx+7)
+		gs.PutCellLoop(gv.cy+1, gv.cx+8)
+		gs.PutCellLoop(gv.cy+2, gv.cx+0)
+		gs.PutCellLoop(gv.cy+2, gv.cx+2)
+		gs.PutCellLoop(gv.cy+2, gv.cx+6)
+		gs.PutCellLoop(gv.cy+2, gv.cx+9)
+		gs.PutCellLoop(gv.cy+3, gv.cx+0)
+		gs.PutCellLoop(gv.cy+3, gv.cx+2)
+		gs.PutCellLoop(gv.cy+3, gv.cx+7)
+		gs.PutCellLoop(gv.cy+3, gv.cx+8)
+		gs.PutCellLoop(gv.cy+4, gv.cx+1)
+		gs.PutCellLoop(gv.cy+4, gv.cx+2)
+		gs.PutCellLoop(gv.cy+4, gv.cx+8)
+		gs.PutCellLoop(gv.cy+5, gv.cx+2)
+		gs.PutCellLoop(gv.cy+5, gv.cx+5)
+		gs.PutCellLoop(gv.cy+5, gv.cx+8)
+		gs.PutCellLoop(gv.cy+6, gv.cx+3)
+		gs.PutCellLoop(gv.cy+6, gv.cx+4)
+		gs.PutCellLoop(gv.cy+6, gv.cx+6)
+		gs.PutCellLoop(gv.cy+6, gv.cx+7)
 	}
 }
 
+// .  #####
+//
+//	##    ##
+//
+// # #   #  #
+// # #    ##
+//
+//	##     #
+//	 #  #  #
+//	  ## ##
 func (gs *GameState) ComputeNextStep() {
 	var buffer [GAMEY][GAMEX]int
 

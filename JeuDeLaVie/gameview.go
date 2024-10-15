@@ -3,8 +3,9 @@ package main
 import (
 	// "math"
 
-	nc "github.com/rthornton128/goncurses"
 	"log"
+
+	nc "github.com/rthornton128/goncurses"
 )
 
 type GameView struct {
@@ -14,15 +15,15 @@ type GameView struct {
 	p2x int
 	pad *nc.Pad
 
-	vy  int // Position of the view
-	vx  int
+	vy int // Position of the view
+	vx int
 
-	cx 	int
-	cy 	int
+	cx int
+	cy int
 
 	spd int
 	run bool
-	cur	bool
+	cur bool
 	pat int
 }
 
@@ -125,14 +126,14 @@ func (gv *GameView) ChangeSpeed() {
 
 func (gv *GameView) CyclePattern(dir bool) {
 	if dir {
-		gv.pat = (gv.pat+1 + 15) % 15
+		gv.pat = (gv.pat + 1 + 16) % 16
 	} else {
-		gv.pat = (gv.pat-1 + 15) % 15
+		gv.pat = (gv.pat - 1 + 16) % 16
 	}
 }
 
-func (gv *GameView) DrawCursor()  {
-	gv.pad.MoveAddChar(gv.cy, gv.cx, gv.pad.MoveInChar(gv.cy, gv.cx) | nc.A_STANDOUT)
+func (gv *GameView) DrawCursor() {
+	gv.pad.MoveAddChar(gv.cy, gv.cx, gv.pad.MoveInChar(gv.cy, gv.cx)|nc.A_STANDOUT)
 }
 
 func (gv GameView) NoutRefresh(scr *nc.Window) {

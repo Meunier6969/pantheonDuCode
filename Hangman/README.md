@@ -11,7 +11,10 @@ Pour Arch Linux : `pacman -S jdk-openjdk`
 java Main.java
 ```
 
+## Source des mots
+[Français](https://github.com/chrplr/openlexicon/blob/master/datasets-info/Liste-de-mots-francais-Gutenberg/liste.de.mots.francais.frgut.txt)
+
 ## ✏️ Note
 j'aime pas java
 potentiellement compilable avec Java 14+ mais j'avait du mal avec 21 donc jsp mais surement
-je pourrait écrire des trucs de manière plus fonctionelle mais bon 
+je pourrait écrire des trucs de manière plus fonctionelle mais bon

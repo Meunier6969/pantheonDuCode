@@ -1,3 +1,4 @@
+import java.io.RandomAccessFile;
 import java.util.ArrayList;
 
 public class Word {
@@ -10,34 +11,35 @@ public class Word {
 
     public Word() {
         this.word = "Cephalaspis";
-        this.word = this.word.toUpperCase();
 
         this.triedLetters = new ArrayList<>();
         this.foundLetters = new boolean[this.word.length()];
         this.remainingAttempt = 5;
+        this.word = this.sanitizeWord();
     }
 
     public Word(int lang) {
+        // raaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
         this.word = switch (lang) {
-            case 0 -> "Racontée"; // French
+            case 0 -> this.getRandomWordFromFile("Mots/mots_fr.txt"); // French
             case 1 -> "Cephalaspis"; // English (yes)
             case 2 -> "Mercatores"; // Latin
             default -> "Word";
         };
-        this.word = this.word.toUpperCase();
 
         this.triedLetters = new ArrayList<>();
         this.foundLetters = new boolean[this.word.length()];
         this.remainingAttempt = 5;
+        this.word = this.sanitizeWord();
     }
 
     public Word(String word) {
         this.word = word;
-        this.word = this.word.toUpperCase();
 
         this.triedLetters = new ArrayList<>();
         this.foundLetters = new boolean[this.word.length()];
         this.remainingAttempt = 5;
+        this.word = this.sanitizeWord();
     }
 
     public void tryLetter(char letter) {
@@ -82,5 +84,37 @@ public class Word {
             if (b == false) return false;
         }
         return true;
+    }
+
+    private String sanitizeWord() {
+        StringBuilder newString = new StringBuilder(this.word.length());
+
+        for (int i = 0; i < this.word.length(); i++) {
+            char c = this.word.charAt(i);
+            if (Character.isLetter(c)) {
+                newString.append(c);
+            } else {
+                this.foundLetters[i] = true;
+                if (c != '_') newString.append(c);
+                else newString.append(' ');
+            }
+        }
+
+        return newString.toString().toUpperCase();
+    }
+
+    public static String getRandomWordFromFile(String filePath)
+        throws Exception {
+        final RandomAccessFile f = new RandomAccessFile(filePath, "r");
+        final long randomLocation = (long) (Math.random() * f.length());
+
+        f.seek(randomLocation);
+        f.readLine();
+
+        String randomLine = f.readLine();
+        System.err.println(randomLine);
+
+        f.close();
+        return "";
     }
 }

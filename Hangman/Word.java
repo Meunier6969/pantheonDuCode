@@ -20,12 +20,16 @@ public class Word {
 
     public Word(int lang) {
         // raaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-        this.word = switch (lang) {
-            case 0 -> this.getRandomWordFromFile("Mots/mots_fr.txt"); // French
-            case 1 -> "Cephalaspis"; // English (yes)
-            case 2 -> "Mercatores"; // Latin
-            default -> "Word";
-        };
+        try {
+            this.word = switch (lang) {
+                case 0 -> Word.getRandomWordFromFile("Mots/mots_fr.txt"); // French
+                case 1 -> "Cephalaspis"; // English (yes)
+                case 2 -> "Mercatores"; // Latin
+                default -> "Word";
+            };
+        } catch (Exception e) {
+            System.err.println("Couldn't get word : " + e);
+        }
 
         this.triedLetters = new ArrayList<>();
         this.foundLetters = new boolean[this.word.length()];
@@ -86,7 +90,7 @@ public class Word {
         return true;
     }
 
-    private String sanitizeWord() {
+    public String sanitizeWord() {
         StringBuilder newString = new StringBuilder(this.word.length());
 
         for (int i = 0; i < this.word.length(); i++) {
@@ -112,9 +116,8 @@ public class Word {
         f.readLine();
 
         String randomLine = f.readLine();
-        System.err.println(randomLine);
 
         f.close();
-        return "";
+        return randomLine;
     }
 }

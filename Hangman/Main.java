@@ -3,11 +3,16 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        for (int i = 0; i < 69; i++) {
-            try {
-                Word.getRandomWordFromFile("Mots/mots_fr.txt");
-            } catch (Exception e) {}
-        }
+        // for (int i = 0; i < 69; i++) {
+        //     try {
+        //         Word www = new Word(0);
+        //         System.out.printf(
+        //             "%s %s\n",
+        //             www.finalWord(),
+        //             www.sanitizeWord()
+        //         );
+        //     } catch (Exception e) {}
+        // }
 
         Scanner s = new Scanner(System.in);
 
@@ -18,9 +23,10 @@ public class Main {
         System.out.println("2 - Latinus (la)");
         System.out.println("3 - Mot personalisé");
 
+        System.out.print("> ");
         int choice = s.nextInt();
 
-        Word w;
+        Word w = new Word(0);
         switch (choice) {
             case 0:
                 w = new Word(0);
@@ -32,13 +38,18 @@ public class Main {
                 w = new Word(2);
                 break;
             case 3:
-                w = new Word();
+                boolean loop = true;
+                while (loop) {
+                    System.out.print("Entrer le mot à deviner : ");
+                    w = new Word(s.next()); // TODO: lit que un mot
+                    if (w.isWordFound()) System.out.println(
+                        "Le mot n'est pas valide."
+                    );
+                    else loop = false;
+                }
                 break;
-            default:
-                w = new Word("SEXE");
+            default: // French by default, can be changed ("try again" ?)
         }
-
-        w = new Word("-__-htrghrty'4567HRh'( t g");
 
         Character c;
 
@@ -53,6 +64,12 @@ public class Main {
 
             w.tryLetter(c);
         } while (w.remainingAttempt > 0 && !w.isWordFound());
+
+        if (w.isWordFound()) {
+            System.out.println("Bravo, vous avez gagné.e !");
+        } else {
+            System.out.println("Dommage...");
+        }
 
         System.out.print("Le mot était : ");
         System.out.println(w.finalWord());

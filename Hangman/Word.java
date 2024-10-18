@@ -4,9 +4,8 @@ import java.util.ArrayList;
 public class Word {
 
     private String word;
-    private boolean[] foundLetters; // list of letters maybe
+    private boolean[] foundLetters;
 
-    public int remainingAttempt;
     public ArrayList<Character> triedLetters;
 
     public Word() {
@@ -14,7 +13,6 @@ public class Word {
 
         this.triedLetters = new ArrayList<>();
         this.foundLetters = new boolean[this.word.length()];
-        this.remainingAttempt = 5;
         this.word = this.sanitizeWord();
     }
 
@@ -33,7 +31,6 @@ public class Word {
 
         this.triedLetters = new ArrayList<>();
         this.foundLetters = new boolean[this.word.length()];
-        this.remainingAttempt = 5;
         this.word = this.sanitizeWord();
     }
 
@@ -42,30 +39,29 @@ public class Word {
 
         this.triedLetters = new ArrayList<>();
         this.foundLetters = new boolean[this.word.length()];
-        this.remainingAttempt = 5;
         this.word = this.sanitizeWord();
     }
 
-    public void tryLetter(char letter) {
+	// return false if the letter was already tried, or isn't in the word
+    public boolean tryLetter(char letter) {
         letter = Character.toUpperCase(letter);
 
         if (this.triedLetters.contains(letter)) {
-            this.remainingAttempt--;
-            return;
+            return false;
         }
 
         this.triedLetters.add(letter);
 
-        int attemptPenalty = 1;
+        boolean attemptPenalty = false;
 
         for (int i = 0; i < this.word.length(); i++) {
             if (this.word.charAt(i) == letter) {
                 this.foundLetters[i] = true;
-                attemptPenalty = 0;
+                attemptPenalty = true;
             }
         }
 
-        this.remainingAttempt -= attemptPenalty;
+        return attemptPenalty;
     }
 
     public String wordHidden() {

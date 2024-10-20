@@ -13,6 +13,7 @@ java Main.java
 
 ## Source des mots
 [Français](https://github.com/chrplr/openlexicon/blob/master/datasets-info/Liste-de-mots-francais-Gutenberg/liste.de.mots.francais.frgut.txt)
+[Anglais](https://github.com/Xethron/Hangman/blob/master/words.txt)
 
 ## ✏️ Note
 j'aime pas java

@@ -12,9 +12,19 @@ public class Game {
 
 		Game.printWordSelect();
 
-		System.out.print("> ");
-		String strChoice = s.nextLine(); // TODO: Can't enter nothing
-		int choice = Integer.parseInt(strChoice);
+		String strChoice;
+		int choice;
+		do { // Make sure to loop and check if the numbers are correct 
+			System.out.print("> ");
+			strChoice = s.nextLine();
+		
+			try {
+				choice = Integer.parseInt(strChoice);
+			} catch (Exception e) {
+				choice = -1;
+			}
+		
+		} while ( choice < 0 || choice > 3 );
 
 		this.word = getWordLanguage(choice, s);
 		this.remainingAttempts = 5;
@@ -24,8 +34,14 @@ public class Game {
 			this.printMainGameLoop();
 			
 			// Get char
-			System.out.print("> ");
-			Character c = s.nextLine().trim().charAt(0); // TODO: Can't enter nothing
+			String strc;
+			Character c;
+			do {
+				System.out.print("> ");
+				strc = s.nextLine().trim();
+			} while (strc.length() == 0);
+
+			c = strc.charAt(0);
 
 			// Try char
 			boolean success = this.word.tryLetter(c);
@@ -62,7 +78,7 @@ public class Game {
 		System.out.println(this.word.triedLetters);
 	}
 
-	public Word getWordLanguage(int choice, Scanner s) { // TODO: Custom word broken
+	public Word getWordLanguage(int choice, Scanner s) {
 		Word w = new Word(0);
 		switch (choice) {
 			case 0: // French
@@ -77,7 +93,7 @@ public class Game {
 			case 3: // Custom word
 				do {
 					System.out.print("Entrer le mot à deviner : ");
-					w = new Word(s.next());
+					w = new Word(s.nextLine());
 					if (w.isWordFound())
 						System.out.println("Le mot n'est pas valide.");
 				} while (w.isWordFound());

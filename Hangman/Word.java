@@ -21,8 +21,8 @@ public class Word {
         try {
             this.word = switch (lang) {
                 case 0 -> Word.getRandomWordFromFile("Mots/mots_fr.txt"); // French
-                case 1 -> "Cephalaspis"; // English (yes)
-                case 2 -> "Mercatores"; // Latin
+                case 1 -> Word.getRandomWordFromFile("Mots/mots_en.txt"); // English (yes)
+                case 2 -> Word.getRandomWordFromFile("Mots/mots_la.txt"); // Latin
                 default -> "Word";
             };
         } catch (Exception e) {

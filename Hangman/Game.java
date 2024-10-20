@@ -27,7 +27,8 @@ public class Game {
 		} while ( choice < 0 || choice > 3 );
 
 		this.word = getWordLanguage(choice, s);
-		this.remainingAttempts = 5;
+		// this.word = new Word("AAAAAAAAA");
+		this.remainingAttempts = 7;
 		
 		do {
 			// "What char?"
@@ -51,8 +52,10 @@ public class Game {
 		} while (this.remainingAttempts > 0 && !this.word.isWordFound());
 
 		if (this.word.isWordFound()) {
+			System.out.println(this.getHangmanDrawing(-1));
 			System.out.println("Bravo, vous avez gagné.e !");
 		} else {
+			System.out.println(this.getHangmanDrawing(7));
 			System.out.println("Dommage...");
 		}
 
@@ -72,6 +75,7 @@ public class Game {
 	}
 
 	public void printMainGameLoop() {
+		System.out.println(this.getHangmanDrawing(7 - this.remainingAttempts));
 		System.out.println(this.word.wordHidden());
 		System.out.printf("Essais restants : %d\n", this.remainingAttempts);
 		System.out.print("Lettres essayées : ");
@@ -79,7 +83,7 @@ public class Game {
 	}
 
 	public Word getWordLanguage(int choice, Scanner s) {
-		Word w = new Word(0);
+		Word w;
 		switch (choice) {
 			case 0: // French
 				w = new Word(0);
@@ -99,9 +103,95 @@ public class Game {
 				} while (w.isWordFound());
 				break;
 			default: // French by default, can be changed ("try again" ?)
+				w = new Word(0);
 		}
 
 		return w;
 	}
 
+	public String getHangmanDrawing(int level) {
+		return switch(level) {
+			case 0 -> """
+					  
+					  
+					  
+					  
+					  
+					  
+					==========
+					""";
+			case 1 -> """
+					 | 
+					 |    
+					 |    
+					 |   
+					 |  
+					 |
+					==========
+					""";
+			case 2 -> """
+					 |______
+					 |    
+					 |    
+					 |   
+					 |  
+					 |
+					==========
+					""";
+			case 3 -> """
+					 |______
+					 |   |
+					 |    
+					 |   
+					 |  
+					 |
+					==========
+					""";
+			case 4 -> """
+					 |______
+					 |   |
+					 |   O
+					 |   
+					 |  
+					 |
+					==========
+					""";
+			case 5 -> """
+					 |______
+					 |   |
+					 |   O
+					 |   |
+					 |  
+					 |
+					==========
+					""";
+			case 6 -> """
+					 |______
+					 |   |
+					 |   O
+					 |  -+-
+					 |  
+					 |
+					==========
+					""";
+			case 7 -> """
+					 |______
+					 |   |
+					 |   O
+					 |  -+-
+					 |  / \\
+					 |
+					==========
+					""";
+			default -> """
+					 |______
+					 |
+					 |   
+					 |  \\O/
+					 |   |
+					 |  / \\
+					==========
+					""";
+		};
+	}
 }

@@ -29,6 +29,8 @@ public class Word {
             System.err.println("Couldn't get word : " + e);
         }
 
+		System.err.println(this.word);
+
         this.triedLetters = new ArrayList<>();
         this.foundLetters = new boolean[this.word.length()];
         this.word = this.sanitizeWord();
@@ -88,12 +90,15 @@ public class Word {
 
     public String sanitizeWord() {
         StringBuilder newString = new StringBuilder(this.word.length());
-
+		
         for (int i = 0; i < this.word.length(); i++) {
+
             char c = this.word.charAt(i);
             if (Character.isLetter(c)) {
-                newString.append(c);
-            } else {
+				// TODO: diactrics ?
+				newString.append(c);
+            			
+			} else {
                 this.foundLetters[i] = true;
                 if (c != '_') newString.append(c);
                 else newString.append(' ');
@@ -101,7 +106,7 @@ public class Word {
         }
 
         return newString.toString().toUpperCase();
-    }
+	}
 
     public static String getRandomWordFromFile(String filePath)
         throws Exception {
@@ -111,7 +116,8 @@ public class Word {
         f.seek(randomLocation);
         f.readLine();
 
-        String randomLine = f.readLine();
+		// Fix accents (éèàçë and the likes)
+        String randomLine = new String(f.readLine().getBytes("ISO-8859-1"), "UTF-8");
 
         f.close();
         return randomLine;

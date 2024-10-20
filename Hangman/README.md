@@ -12,10 +12,11 @@ java Main.java
 ```
 
 ## Source des mots
-[Français](https://github.com/chrplr/openlexicon/blob/master/datasets-info/Liste-de-mots-francais-Gutenberg/liste.de.mots.francais.frgut.txt)
-[Anglais](https://github.com/Xethron/Hangman/blob/master/words.txt)
+[Français](https://github.com/chrplr/openlexicon/blob/master/datasets-info/Liste-de-mots-francais-Gutenberg/liste.de.mots.francais.frgut.txt) \
+[Anglais](https://github.com/Xethron/Hangman/blob/master/words.txt) \
+[Latin](https://gemini.google.com/)
 
 ## ✏️ Note
-j'aime pas java
-potentiellement compilable avec Java 14+ mais j'avait du mal avec 21 donc jsp mais surement
-je pourrait écrire des trucs de manière plus fonctionelle mais bon
+j'aime pas java \
+potentiellement compilable avec Java 14+ mais j'avait du mal avec 21 donc jsp mais surement \
+je pourrait écrire des trucs de manière plus fonctionel mais bon

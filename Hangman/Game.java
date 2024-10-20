@@ -75,9 +75,12 @@ public class Game {
 	}
 
 	public void printMainGameLoop() {
+
+		System.out.println();
+		System.out.printf("==== Essais restants : %d ====\n", this.remainingAttempts);
 		System.out.println(this.getHangmanDrawing(7 - this.remainingAttempts));
+		
 		System.out.println(this.word.wordHidden());
-		System.out.printf("Essais restants : %d\n", this.remainingAttempts);
 		System.out.print("Lettres essayées : ");
 		System.out.println(this.word.triedLetters);
 	}

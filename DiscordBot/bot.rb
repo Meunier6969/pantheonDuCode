@@ -1,15 +1,13 @@
+require './bank'
+
 require 'discordrb'
 require 'dotenv'
 Dotenv.load
 
-bot = Discordrb::Commands::CommandBot.new token: ENV['BOT_TOKEN'], prefix: 'koyuki '
+bot = Discordrb::Commands::CommandBot.new token: ENV['BOT_TOKEN'], prefix: 'koyuki ', channels: [ENV['CASINO_CHAN_ID']]
 
-user_balance = {}
-
-bot.command :a do |event| 
-	"#{bot.emoji}"
-end
-
+globalbank = Bank.new
+globalbank.loadFromJSON 'bal.json'
 
 # Admin commands
 bot.command :prison, required_roles: [ENV['BIG_SISTER_ROLE_ID']], description: 'Stop the bot' do |event|
@@ -19,25 +17,29 @@ bot.command :prison, required_roles: [ENV['BIG_SISTER_ROLE_ID']], description: '
 end
 
 bot.command :'balance-all', description: 'Reply with everyones balance' do |event|
-	event.respond user_balance.to_s
-	# for user in user_balance.each_key do
-	# 	message < "#{user}"
-	# end
+	event.respond "#{globalbank.getBalanceAll}"
 end
 
-# LET'S GO GAMBLING
+# Money
 bot.command :balance, description: 'Reply with users balance' do |event|
-	next event.message.reply! 'You don\'t have any money :sob:' unless user_balance[event.author.username] != nil
-	event.message.reply! "#{event.author.mention} has #{user_balance[event.author.username]} #{bot.emoji(1296270216203997315).use}"
+	userbalance = globalbank.getUserBalance event.author.username
+
+	if userbalance == 0
+		event.message.reply! 'You don\'t have any money :sob:'
+	else
+		event.message.reply! "#{event.author.mention} has #{userbalance} #{bot.emoji(ENV['PYRO_EMO']).use}"
+	end
+
 end
 
 bot.command :'add-money', description: "Add money to users balance" do |event, *args|
-	user_balance[event.author.username] ||= 0 # Set value to 0 if the key doesn't exist
-	user_balance[event.author.username] += args[0].to_i
+	newbalance = globalbank.addPyroTo event.author.username, args[0].to_i 
+	event.message.reply! "You defrauded the bank of #{args[0].to_i} #{bot.emoji(ENV['PYRO_EMO']).use}. You now have #{newbalance} #{bot.emoji(ENV['PYRO_EMO']).use}!"
 end
 
+# LET'S GO GAMBLING
 bot.command :'pile-ou-face', description: "Simple pile ou face"  do |event|
-	if rand 2 == 1
+	if rand(2) == 1
 		event.message.reply! "Pile!", mention_user: true
 	else
 		event.message.reply! "Face!", mention_user: true
@@ -49,12 +51,15 @@ bot.command :balls do |event|
 	event.message.reply! "balls, cock even", mention_user: true
 end
 
-at_exit { bot.stop }
+at_exit do
+	globalbank.saveToJSON 'bal.json'
+	bot.stop
+end
 bot.mode = :error
 
 bot.run(background: true)
 puts "Koyuki running, nihaha"
-bot.send_message ENV['GENERAL_CHAN_ID'], 'Koyuki online!'
+bot.send_message ENV['CASINO_CHAN_ID'], 'Koyuki online!'
 bot.join
 
 # Pile ou face

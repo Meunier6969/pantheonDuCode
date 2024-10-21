@@ -7,9 +7,9 @@ Je code uniquement pour m'amuser/m'entrainer, pas besoin de récompense (de tout
 - ~~Hello World~~
 - ~~Chifoumi~~
 - ~~Plus ou Moins~~
-### 📙 Orange (1/8)
+### 📙 Orange (2/8)
 - ChatBot
-- HangMan
+- ~~HangMan~~
 - Bot Discord
 - ~~Jeu de la vie~~
 - Pong Web

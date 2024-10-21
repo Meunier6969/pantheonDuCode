@@ -1,5 +1,8 @@
 .env
 
+// Java
+*.class
+
 // C
 *.out
 

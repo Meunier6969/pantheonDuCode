@@ -5,11 +5,11 @@ Pour réussir ce défi tu dois implémenter le jeu du pendu, le jeu se fait en l
 Java (imposé)
 
 ## 🏃 Run
-Pour Java 22+ \
+Pour Java 22+
 ```
 java Main.java
 ```
-Pour Java 21 et en dessous \
+Pour Java 21 et en dessous
 ```
 javac *.java
 java Main

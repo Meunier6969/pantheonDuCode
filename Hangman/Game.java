@@ -24,8 +24,8 @@ public class Game {
 				choice = -1;
 			}
 		
-		} while ( choice < 0 || choice > 3 );
-
+		} while ( choice < 0 || choice > 3 ); 
+		
 		this.word = getWordLanguage(choice, s);
 		// this.word = new Word("AAAAAAAAA");
 		this.remainingAttempts = 7;
@@ -77,7 +77,7 @@ public class Game {
 	public void printMainGameLoop() {
 
 		System.out.println();
-		System.out.printf("==== Essais restants : %d ====\n", this.remainingAttempts);
+		System.out.printf(">>>> Essais restants : %d <<<<\n", this.remainingAttempts);
 		System.out.println(this.getHangmanDrawing(7 - this.remainingAttempts));
 		
 		System.out.println(this.word.wordHidden());

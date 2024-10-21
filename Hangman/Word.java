@@ -29,8 +29,6 @@ public class Word {
             System.err.println("Couldn't get word : " + e);
         }
 
-		System.err.println(this.word);
-
         this.triedLetters = new ArrayList<>();
         this.foundLetters = new boolean[this.word.length()];
         this.word = this.sanitizeWord();

@@ -8,10 +8,10 @@ section .text
 	global _start
 
 _start:
-    move eax, 4    ; sys_write
-    move ebx, 1    ; 1 => stdout
-    move ecx, [db] ; msg
-    move edx, 4    ; length of output
+    mov eax, 4    ; sys_write
+    mov ebx, 1    ; 1 => stdout
+    mov ecx, [num] ; msg
+    mov edx, 4    ; length of output
 	int 0x80       ; interupt
 
 	mov eax, 1     ; sys_exit

@@ -3,8 +3,10 @@
 // Java
 *.class
 
-// C
+// C / Assembly
 *.out
+*.o
+*.lis
 
 // Ruby
 bal.json

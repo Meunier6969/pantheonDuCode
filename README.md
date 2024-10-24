@@ -7,7 +7,7 @@ Je code uniquement pour m'amuser/m'entrainer, pas besoin de récompense (de tout
 - ~~Hello World~~
 - ~~Chifoumi~~
 - ~~Plus ou Moins~~
-### 📙 Orange (2/8)
+### 📙 Orange (2/10)
 - ChatBot
 - ~~HangMan~~
 - Bot Discord
@@ -16,6 +16,9 @@ Je code uniquement pour m'amuser/m'entrainer, pas besoin de récompense (de tout
 - Portfolio
 - Jacques de Molay
 - LPCC
-### 📕 Rouge (0/2)
+- 4eS
+- efreiPoker
+### 📕 Rouge (0/3)
 - Game Dev
 - Jeu d'échecs
+- ticTacToe

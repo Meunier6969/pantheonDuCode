@@ -18,7 +18,7 @@ Je code uniquement pour m'amuser/m'entrainer, pas besoin de récompense (de tout
 - LPCC
 - 4eS
 - efreiPoker
-### 📕 Rouge (0/3)
+### 📕 Rouge (1/3)
 - Game Dev
 - Jeu d'échecs
-- ticTacToe
+- ~~ticTacToe~~

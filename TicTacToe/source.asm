@@ -5,15 +5,14 @@ section .data
 	playprompt db "> "
 	playpromptlen equ 2
 
-	debugstring db "iamherehiyesitme :D", 0xa
-	debugstringlen equ $ - debugstring
-
 	playeronewonstring db "Player 1 (O) won !", 0xa
 	playeronewonstringlen equ $ - playeronewonstring
 
 	playertwowonstring db "Player 2 (X) won !", 0xa
 	playertwowonstringlen equ $ - playertwowonstring
 
+	playagainstring db "Do you want to play again ? (y/[n])", 0xa
+	playagainstringlen equ $ - playagainstring
 
 	; buffer to write/read single characters
 	buffer db 0
@@ -26,6 +25,8 @@ _start:
 
 	init_game:
 
+	mov word [playerone], 0
+	mov word [playertwo], 0
 	mov r10, 0
 
 	main_game_loop:
@@ -74,8 +75,8 @@ _start:
 	xor rax, rax
 	mov rax, r10
 	and rax, 1
-	cmp rax, 1
-	jge playerone_make_move
+	cmp rax, 0
+	jle playerone_make_move
 	jmp playertwo_make_move 
 
 	; play the move
@@ -183,8 +184,37 @@ _start:
 	jmp end_of_game
 
 	end_of_game:
-	call print_board
 	call empty_stdin
+	
+	call print_board
+
+	; print prompt
+	mov rax, 1
+    mov rdi, 1
+    mov rsi, playagainstring
+    mov rdx, playagainstringlen
+    syscall
+
+	; print prompt
+	mov rax, 1
+    mov rdi, 1
+    mov rsi, playprompt
+    mov rdx, playpromptlen
+    syscall
+
+	; read 
+    mov rax, 0
+    mov rdi, 0
+    mov rsi, buffer
+    mov rdx, bufferlen
+    syscall
+
+	mov cl, byte [buffer]
+
+	cmp cl, 'y'
+	je  init_game
+	cmp cl, 'Y'
+	je  init_game
 
 	quit_game:
     mov rax, 60
@@ -290,11 +320,4 @@ empty_stdin:
 	
 	ret
 
-print_debug:
-	mov rax, 1
-    mov rdi, 1
-    mov rsi, debugstring
-    mov rdx, debugstringlen
-    syscall
 
-	ret

@@ -29,10 +29,6 @@ int main()
 	uint16_t playerone = 0b000000000;
 	uint16_t playertwo = 0b000000000;
 
-	// printgrid(playerone, playertwo);
-	// printf("%b\n", 1<<8);
-	// return 0;
-
 	uint8_t counter = 9;
 	int8_t whowon = 0;
 
@@ -80,7 +76,7 @@ int main()
 		-------001010100 = 0x054
 		*/
 		// check if someone won (alor la)
-		if ((playerone & 0x007) == 0x007) whowon = 1;
+		if ((playerone & 0x1c0) == 0x1c0) whowon = 1;
 		if ((playerone & 0x038) == 0x038) whowon = 1;
 		if ((playerone & 0x007) == 0x007) whowon = 1;
 		if ((playerone & 0x124) == 0x124) whowon = 1;
@@ -88,7 +84,8 @@ int main()
 		if ((playerone & 0x049) == 0x049) whowon = 1;
 		if ((playerone & 0x111) == 0x111) whowon = 1;
 		if ((playerone & 0x054) == 0x054) whowon = 1;
-		if ((playertwo & 0x007) == 0x007) whowon = 2;
+
+		if ((playertwo & 0x1c0) == 0x1c0) whowon = 2;
 		if ((playertwo & 0x038) == 0x038) whowon = 2;
 		if ((playertwo & 0x007) == 0x007) whowon = 2;
 		if ((playertwo & 0x124) == 0x124) whowon = 2;
